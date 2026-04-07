@@ -1,0 +1,65 @@
+{
+  "skill_name": "fix-import-error",
+  "evals": [
+    {
+      "id": 1,
+      "name": "basic-editable-install",
+      "prompt": "我在运行项目脚本时遇到 ModuleNotFoundError，确认是项目根目录没有加入 sys.path 导致的。请帮我配置可编辑安装模式。",
+      "expected_output": "配置 pyproject.toml 并执行 pip install -e .，验证安装成功",
+      "assertions": [
+        {
+          "name": "pyproject_toml_has_package_config",
+          "description": "pyproject.toml 包含包配置（tool.setuptools.packages.find 或类似配置）"
+        },
+        {
+          "name": "editable_install_executed",
+          "description": "执行了 pip install -e . 或 uv pip install -e ."
+        },
+        {
+          "name": "install_verified",
+          "description": "验证了安装成功（通过 pip show 或检查 .pth 文件）"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "verify-existing-install",
+      "prompt": "请验证我的项目的可编辑安装是否正确配置。",
+      "expected_output": "检查 pyproject.toml 配置、运行 pip show 验证安装状态、确认 .pth 文件存在",
+      "assertions": [
+        {
+          "name": "checked_pyproject_config",
+          "description": "检查了 pyproject.toml 中的包配置"
+        },
+        {
+          "name": "ran_pip_show",
+          "description": "运行了 pip show <项目名> 验证安装"
+        },
+        {
+          "name": "reported_install_status",
+          "description": "报告了安装状态（成功/失败/需要重新安装）"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "add-new-package-to-config",
+      "prompt": "我新增了一个 utils 目录作为包，需要更新可编辑安装配置。",
+      "expected_output": "更新 pyproject.toml 的 include 配置，重新执行可编辑安装",
+      "assertions": [
+        {
+          "name": "updated_include_config",
+          "description": "更新了 packages.find 的 include 配置以包含新包"
+        },
+        {
+          "name": "reinstalled",
+          "description": "重新执行了 pip install -e ."
+        },
+        {
+          "name": "verified_new_package_importable",
+          "description": "验证了新包可以正常导入"
+        }
+      ]
+    }
+  ]
+}

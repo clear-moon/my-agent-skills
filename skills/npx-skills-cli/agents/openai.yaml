@@ -1,0 +1,4 @@
+interface:
+  display_name: "NPX Skills CLI"
+  short_description: "Summarize and apply npx skills commands"
+  default_prompt: "Use $npx-skills-cli to explain or choose the right npx skills command for this task."
