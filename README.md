@@ -8,7 +8,7 @@
 | --- | --- |
 | [fix-import-error](skills/fix-import-error/) | 解决 Python 项目根目录模块导入问题 |
 | [npx-skills-cli](skills/npx-skills-cli/) | npx skills 命令使用指南 |
-| [github-upload-merge](skills/github-upload-merge/) | 用于执行 GitHub 仓库目录上传、提交、推送、本地合并 main 与分支清理流程 |
+| [github-local-upload](skills/github-local-upload/) | 将当前项目或当前改动发布到 GitHub 的 main，远程不存在时自动创建仓库 |
 
 ## 安装
 
@@ -21,7 +21,7 @@ npx skills add clear-moon/my-agent-skills -g
 ```bash
 npx skills add clear-moon/my-agent-skills -g -s fix-import-error
 npx skills add clear-moon/my-agent-skills -g -s npx-skills-cli
+npx skills add clear-moon/my-agent-skills -g -s github-local-upload
 npx skills add clear-moon/my-agent-skills -g -s example-upload-skill
 npx skills add clear-moon/my-agent-skills -g -s test_only
-npx skills add clear-moon/my-agent-skills -g -s github-upload-merge
 ```
