@@ -1,36 +1,38 @@
-# npx skills Command Reference
+# npx skills 命令参考
 
-## Core commands
+## 核心命令
 
-| Command | Aliases | Use for |
+| 命令 | 别名 | 用途 |
 | --- | --- | --- |
-| `npx skills add <package>` | `a`, `i`, `install` | Install a skill source |
-| `npx skills remove [skills...]` | `rm`, `r` | Remove installed skills |
-| `npx skills list` | `ls` | List installed skills |
-| `npx skills find [query]` | `search`, `f`, `s` | Search for skills |
-| `npx skills check` | None | Check for updates |
-| `npx skills update` | `upgrade` | Update installed skills |
-| `npx skills init [name]` | None | Create a new `SKILL.md` template |
-| `npx skills experimental_install` | None | Restore from skill lock state |
-| `npx skills experimental_sync` | None | Sync from `node_modules` |
-| `npx skills --help` | `-h` | Show help |
-| `npx skills --version` | `-v` | Show version |
+| `npx skills add <package>` | `a`, `i`, `install` | 安装 skill 来源 |
+| `npx skills remove [skills...]` | `rm`, `r` | 卸载已安装的 skills |
+| `npx skills list` | `ls` | 列出已安装的 skills |
+| `npx skills find [query]` | `search`, `f`, `s` | 搜索 skills |
+| `npx skills check` | 无 | 检查是否有更新 |
+| `npx skills update` | `upgrade` | 更新已安装的 skills |
+| `npx skills init [name]` | 无 | 新建 `SKILL.md` 模板 |
+| `npx skills experimental_install` | 无 | 从 skill lock 状态恢复 |
+| `npx skills experimental_sync` | 无 | 从 `node_modules` 同步 |
+| `npx skills --help` | `-h` | 显示帮助 |
+| `npx skills --version` | `-v` | 显示版本 |
 
 ## `add`
 
-Use for installation from GitHub shorthand, repo URLs, git URLs, direct skill paths, or local paths.
+用于从 GitHub 简写、仓库 URL、git URL、直接 skill 路径或本地路径安装。
 
-Common flags:
-- `-g, --global`: install globally
-- `-a, --agent <agents...>`: target specific agents
-- `-s, --skill <skills...>`: install specific skills
-- `-l, --list`: list available skills without installing
-- `--copy`: copy instead of symlink
-- `-y, --yes`: skip prompts
-- `--all`: install all skills to all agents
-- `--full-depth`: search all subdirectories even when a root `SKILL.md` exists
+常用参数：
 
-Examples:
+- `-g, --global`：全局安装
+- `-a, --agent <agents...>`：指定目标 agent
+- `-s, --skill <skills...>`：只安装指定 skills
+- `-l, --list`：列出可用 skills，不安装
+- `--copy`：复制而非 symlink
+- `-y, --yes`：跳过交互确认
+- `--all`：为所有 agent 安装全部 skills
+- `--full-depth`：即使根目录已有 `SKILL.md`，仍搜索所有子目录
+
+示例：
+
 ```bash
 npx skills add vercel-labs/agent-skills
 npx skills add vercel-labs/agent-skills --list
@@ -41,16 +43,18 @@ npx skills add vercel-labs/agent-skills --all
 
 ## `remove`
 
-Use for uninstalling one, many, or all installed skills.
+用于卸载一个、多个或全部已安装的 skills。
 
-Common flags:
-- `-g, --global`: remove from global scope
-- `-a, --agent <agents>`: remove only from specific agents
-- `-s, --skill <skills>`: specify skills explicitly
-- `-y, --yes`: skip prompts
-- `--all`: remove all skills from all agents
+常用参数：
 
-Examples:
+- `-g, --global`：从 global scope 移除
+- `-a, --agent <agents>`：仅从指定 agent 移除
+- `-s, --skill <skills>`：显式指定 skill 名
+- `-y, --yes`：跳过交互确认
+- `--all`：从所有 agent 移除全部 skills
+
+示例：
+
 ```bash
 npx skills remove
 npx skills remove my-skill
@@ -61,14 +65,16 @@ npx skills remove --skill '*' -a cursor
 
 ## `list`
 
-Use for showing installed skills.
+用于展示已安装的 skills。
 
-Common flags:
-- `-g, --global`: show global skills
-- `-a, --agent <agents>`: filter by agent
-- `--json`: machine-readable output
+常用参数：
 
-Examples:
+- `-g, --global`：显示全局 skills
+- `-a, --agent <agents>`：按 agent 过滤
+- `--json`：机器可读输出
+
+示例：
+
 ```bash
 npx skills list
 npx skills ls -g
@@ -78,21 +84,23 @@ npx skills ls --json
 
 ## `find`
 
-Use for skill discovery or keyword search.
+用于发现 skills 或关键词搜索。
 
-Examples:
+示例：
+
 ```bash
 npx skills find
 npx skills find typescript
 npx skills search typescript
 ```
 
-## `check` and `update`
+## `check` 与 `update`
 
-Use `check` to inspect whether updates are available.
-Use `update` to apply all available updates.
+- 用 `check` 查看是否有可用更新。
+- 用 `update` 应用所有可用更新。
 
-Examples:
+示例：
+
 ```bash
 npx skills check
 npx skills update
@@ -101,66 +109,72 @@ npx skills upgrade
 
 ## `init`
 
-Use for creating a new skill template in the current directory or a named subdirectory.
+用于在当前目录或指定子目录中创建新的 skill 模板。
 
-Examples:
+示例：
+
 ```bash
 npx skills init
 npx skills init my-skill
 ```
 
-## Experimental commands
+## Experimental 命令
 
-Use only when the user explicitly needs these workflows.
+仅在用户明确需要这些工作流时使用。
 
 ### `experimental_install`
 
-Restore skills from a lock file (`skills-lock.json`). Useful for migrating skills to a new machine or restoring a previous state.
+从 lock file（`skills-lock.json`）恢复 skills。适用于迁移到新机器或恢复先前状态。
 
-**Lock file locations:**
-- Global: `~/.agents/.skill-lock.json`
-- Project: `<project>/.agents/skills-lock.json`
+**Lock file 位置：**
 
-**Common flags:**
-- `-g, --global`: restore global skills
-- `-y, --yes`: skip confirmation prompts
+- Global：`~/.agents/.skill-lock.json`
+- Project：`<project>/.agents/skills-lock.json`
 
-**Examples:**
+**常用参数：**
+
+- `-g, --global`：恢复全局 skills
+- `-y, --yes`：跳过确认提示
+
+**示例：**
+
 ```bash
-# Restore project-level skills (reads from current directory's lock file)
+# 恢复项目级 skills（读取当前目录下的 lock file）
 npx skills experimental_install
 
-# Restore global skills
+# 恢复全局 skills
 npx skills experimental_install -g
 
-# Restore without prompts
+# 无提示恢复
 npx skills experimental_install -g -y
 ```
 
-**Migration workflow:**
+**迁移流程示例：**
+
 ```bash
-# On old machine: backup the lock file
+# 旧机器：备份 lock file
 cp ~/.agents/.skill-lock.json ~/backup/
 
-# On new machine: restore from lock file
+# 新机器：从 lock file 恢复
 cp ~/backup/.skill-lock.json ~/.agents/
 npx skills experimental_install -g -y
 ```
 
 ### `experimental_sync`
 
-Sync skills from `node_modules` to create symlinks. Used when skills exist in node_modules but symlinks are missing.
+从 `node_modules` 同步 skills 并创建 symlink。适用于 skills 已在 node_modules 中但 symlink 缺失的情况。
 
-**Examples:**
+**示例：**
+
 ```bash
 npx skills experimental_sync
 npx skills experimental_sync -a codex -y
 ```
 
-## Scope guidance
+## Scope 说明
 
-- Project scope is the default.
-- Global scope usually means adding `-g`.
-- Agent-specific actions usually mean adding `-a <agent>`.
-- Skill-specific actions usually mean adding `-s <skill>`.
-- Repository-wide installation can omit `-s`.
+- 默认是 project scope。
+- global scope 通常需要加 `-g`。
+- 针对特定 agent 的操作通常加 `-a <agent>`。
+- 针对特定 skill 的操作通常加 `-s <skill>`。
+- 整仓安装时可省略 `-s`。

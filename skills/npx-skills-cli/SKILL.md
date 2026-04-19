@@ -1,60 +1,61 @@
 ---
 name: npx-skills-cli
-description: Summarize, explain, and choose the correct `npx skills` command for installing, listing, searching, removing, checking, updating, initializing, or syncing agent skills. Use when a user asks how to use the `skills` CLI, wants the right command or flags, needs alias coverage, or needs help deciding between project scope, global scope, specific agents, or specific skills.
+description: 汇总、说明并帮助选择正确的 `npx skills` 命令，用于安装、列出、搜索、卸载、检查、更新、初始化或同步 agent skills。当用户询问如何使用 `skills` CLI、需要正确的命令或参数、需要别名对照，或需要在 project scope、global scope、特定 agent 或特定 skill 之间做选择时使用。
 ---
 
-# Npx Skills Cli
+# Npx Skills CLI
 
-Explain `npx skills` commands at the level the user needs.
+按用户所需粒度说明 `npx skills` 命令。
 
-Read [references/commands.md](references/commands.md) when you need the command catalog, aliases, options, or examples.
+需要命令目录、别名、选项或示例时，阅读 [references/commands.md](references/commands.md)。
 
-Prefer exact commands over abstract descriptions. Keep answers compact unless the user asks for a full walkthrough.
+优先给出可执行的准确命令，少用抽象描述；除非用户要求完整步骤说明，否则保持答复紧凑。
 
-## Workflow
+## 工作流程
 
-1. Identify the user's goal.
-2. Map it to the nearest `npx skills` command.
-3. Add the smallest set of flags needed for scope, agents, or skill selection.
-4. Return one or more ready-to-run commands.
-5. Mention aliases only when they help the user scan or compare commands.
+1. 明确用户目标。
+2. 映射到最接近的 `npx skills` 子命令。
+3. 仅补充 scope、agent 或 skill 选择所需的最少参数。
+4. 返回一条或多条可直接运行的命令。
+5. 仅在有助于快速浏览或对比命令时提及别名。
 
-## Decision Guide
+## 决策指引
 
-- Use `add` when the user wants to install skills from a repo, URL, git source, or local path.
-- Use `list` when the user wants to inspect what is already installed.
-- Use `find` when the user wants discovery or keyword search.
-- Use `remove` when the user wants to uninstall skills.
-- Use `check` when the user wants to know whether updates exist.
-- Use `update` when the user wants to upgrade installed skills.
-- Use `init` when the user wants to scaffold a new `SKILL.md`.
-- Use `experimental_install` when the user wants to restore from a lock file.
-- Use `experimental_sync` when the user wants to sync skills from `node_modules`.
+- 用户要从仓库、URL、git 源或本地路径安装 skills 时，用 `add`。
+- 用户要查看已安装内容时，用 `list`。
+- 用户要发现或按关键词搜索时，用 `find`。
+- 用户要卸载 skills 时，用 `remove`。
+- 用户要知道是否有更新时，用 `check`。
+- 用户要升级已安装的 skills 时，用 `update`。
+- 用户要脚手架新建 `SKILL.md` 时，用 `init`。
+- 用户要从 lock file 恢复时，用 `experimental_install`。
+- 用户要从 `node_modules` 同步 skills 时，用 `experimental_sync`。
 
-## Response Rules
+## 回复规则
 
-- Distinguish project scope from global scope.
-- Mention `-g` for global installs or removals.
-- Mention `-a` or `--agent` when the user cares about specific agents such as `codex` or `claude-code`.
-- Mention `-s` or `--skill` when the user wants specific skills rather than a whole repository.
-- Mention `--all` when the user explicitly wants every skill on every agent.
-- Mention aliases when they are present in the CLI and materially useful.
-- If the user asks for "all commands", provide the full command list from the reference.
-- If the user asks for a recommendation, provide the exact command first, then a one-line reason.
+- 区分 project scope 与 global scope。
+- 涉及全局安装或卸载时说明 `-g`。
+- 用户关心特定 agent（如 `codex`、`claude-code`）时说明 `-a` 或 `--agent`。
+- 用户只要部分 skill 而非整仓时说明 `-s` 或 `--skill`。
+- 用户明确要求对所有 agent 安装全部 skill 时说明 `--all`。
+- CLI 中存在且确实有用的别名可以写出。
+- 用户要「全部命令」时，从参考文档给出完整命令列表。
+- 用户要推荐方案时，先给出准确命令，再附一行理由。
 
-## Examples
+## 示例问法
 
-- "How do I install a skill repo for Codex only?"
-- "Show me all `npx skills` commands."
-- "How do I remove one skill globally?"
-- "What is the difference between `check` and `update`?"
-- "How do I create a new skill template?"
+- 「如何只为 Codex 安装某个 skill 仓库？」
+- 「列出所有 `npx skills` 命令。」
+- 「如何全局卸载某一个 skill？」
+- 「`check` 和 `update` 有什么区别？」
+- 「如何新建 skill 模板？」
 
-## Reference
+## 参考
 
-Use [references/commands.md](references/commands.md) for:
-- canonical commands
-- aliases
-- common flags
-- example invocations
-- experimental commands
+需要以下内容时使用 [references/commands.md](references/commands.md)：
+
+- 规范子命令名
+- 别名
+- 常用参数
+- 调用示例
+- experimental 命令说明
