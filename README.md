@@ -16,12 +16,8 @@
 npx skills add clear-moon/my-agent-skills -g
 ```
 
-## 安装单个技能
+## 安装单个技能示例
 
 ```bash
 npx skills add clear-moon/my-agent-skills -g -s fix-import-error
-npx skills add clear-moon/my-agent-skills -g -s npx-skills-cli
-npx skills add clear-moon/my-agent-skills -g -s github-local-upload
-npx skills add clear-moon/my-agent-skills -g -s example-upload-skill
-npx skills add clear-moon/my-agent-skills -g -s test_only
 ```
